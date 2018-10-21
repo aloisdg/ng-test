@@ -1,1 +1,35 @@
-<div>This is my first component</div>
+<div class="container-fluid" *ngIf="test2 as model; else loading">
+    <table class="table table-stripped table-sm">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <ng-container *ngFor="let x of model.columns">
+                    <th *ngIf="x.type === 0" [attr.colspan]="x.colSpan" (click)="model.setColumnVisible(x.id, !x.isVisible)">{{ x.header1 }}</th>
+                </ng-container>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <ng-container *ngFor="let x of model.columns">
+                    <th *ngIf="x.isVisible">{{ x.header2 }}</th>
+                </ng-container>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of model.rows">
+                <ng-container *ngIf="x.type === 0 || model.indexedRows[x.parentId]?.isExpanded">
+                    <th [attr.rowspan]="x.rowSpan" (click)="model.toggleRow(x.id)">{{ x.header }}</th>
+                    <th *ngIf="!x.isExpanded && x.type !== 3">{{ x.header2 }}</th>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+
+    <pre>{{ test | json }}</pre>
+</div>
+<ng-template #loading>Loading...</ng-template>

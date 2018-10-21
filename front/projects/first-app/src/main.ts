@@ -8,6 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(FirstCompModule, { ngZone: 'noop'})
+platformBrowserDynamic().bootstrapModule(FirstCompModule)
   .catch(err => console.error(err));
 

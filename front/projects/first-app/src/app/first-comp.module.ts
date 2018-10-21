@@ -3,15 +3,35 @@ import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
 import { FirstComponent } from './first-comp.component';
+import { MapToArrayPipe } from 'pipes/mapToArray.pipe';
+import { PushPipe } from 'pipes/push.pipe';
+
+import { Service } from 'api/apiclient';
+
+const COMPONENTS = [
+  FirstComponent
+];
+
+const PIPES = [
+  MapToArrayPipe,
+  PushPipe
+];
+
+const SERVICES = [
+  Service
+];
 
 @NgModule({
   declarations: [
-    FirstComponent
+    COMPONENTS,
+    PIPES
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    SERVICES
+  ],
   entryComponents: [FirstComponent]
 })
 export class FirstCompModule { 

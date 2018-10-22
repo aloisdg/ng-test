@@ -87,15 +87,12 @@ class MMRow {
     public get header2(): string { return this.type === RowType.Employee ? this._header : `${this.employeeCount} employee(s)`; }
     public employeeCount: number;
     public colSpan: number;
-    public get rowSpan(): number { 
+    public get rowSpan(): number {
         if (this.type === RowType.Employee || !this.isExpanded) {
             return 1;
         }
-
-        if (this.type === RowType.Meeting) {
-            return this.childrenIds.length + 1;
-        }
-        return this.childrenIds.length;
+    
+        return this.childrenIds.length + 1;
     };
     public isParentVisible: boolean;
     public isVisible: boolean;
